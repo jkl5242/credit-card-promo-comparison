@@ -14,37 +14,38 @@ const bull = (
   </Box>
 );
 
-
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Chase Sapphire Reserve
-      </Typography>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-      <Image
-      src="/test.png"
-      alt="test" width="188" height="118"
-      />
-      <div style={{display: 'flex', flexDirection: 'column', marginLeft: '10px'}}>
-      <Typography>
-        Current Promotion: 60,000
-      </Typography>
-      <Typography>
-        Standard Promotion: 60,000
-      </Typography>
-      </div>
-      </div>
-    </CardContent>
-  </React.Fragment>
-);
-
-
-const OutlinedCard = () => {
+const OutlinedCard = ({name, image, current, standard}) => {
   return (
     <div>
     <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">{card}</Card>
+      <Card variant="outlined">
+        <React.Fragment>
+          <CardContent>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              {name}
+            </Typography>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+            <Image
+            src={image}
+            alt="test" width="188" height="118"
+            />
+            <div style={{display: 'flex', flexDirection: 'column', marginLeft: '10px'}}>
+            <Typography>
+              Current Promotion:
+              {
+                Number(current) > Number(standard) ? 
+                <Typography color="green">{current}</Typography> : 
+                <Typography>{current}</Typography>
+              }
+            </Typography>
+            <Typography>
+              Standard Promotion: {standard}
+            </Typography>
+            </div>
+            </div>
+          </CardContent>
+        </React.Fragment>
+      </Card>
     </Box>
     </div>
   );

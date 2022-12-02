@@ -18,7 +18,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({data}) {
-  console.log(data)
+  const creditCards = ["chase_reserve", "citi_premier"]
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -37,20 +37,25 @@ export default function Home({data}) {
         </Toolbar>
       </AppBar>
       <Grid container spacing={3}>
-  <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
-  item xs={4}>
-  <OutlinedCard></OutlinedCard>
-  </Grid>
-  <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
-  item xs={4}>
-  <OutlinedCard></OutlinedCard>
-  </Grid>
-  <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
-  item xs={4}>
-  <OutlinedCard></OutlinedCard>
-  </Grid>
-  
-</Grid>
+        <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
+        item xs={4}>
+        <OutlinedCard 
+        name={"Chase Sapphire Reserve"}
+        image={"/test.png"}
+        current={60000}
+        standard={60000}
+        ></OutlinedCard>
+        </Grid>
+        <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
+        item xs={4}>
+        <OutlinedCard 
+        name={"Citi Premier"} 
+        image={"/citi_premier.png"}
+        current={80000}
+        standard={60000}
+        />
+        </Grid>
+      </Grid>
     </Box>
   )
 }
