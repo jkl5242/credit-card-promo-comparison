@@ -30,14 +30,14 @@ const OutlinedCard = ({name, image, current, standard}) => {
             alt="test" width="188" height="118"
             />
             <div style={{display: 'flex', flexDirection: 'column', marginLeft: '10px'}}>
-            <Typography>
+            <div>
               Current Promotion:
               {
                 Number(current) > Number(standard) ? 
                 <Typography color="green"><strong>{current}</strong></Typography> : 
                 <Typography>{current}</Typography>
               }
-            </Typography>
+            </div>
             <Typography>
               Standard Promotion: {standard}
             </Typography>
