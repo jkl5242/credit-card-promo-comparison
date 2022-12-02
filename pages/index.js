@@ -55,6 +55,15 @@ export default function Home({data}) {
         standard={60000}
         />
         </Grid>
+        <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
+        item xs={4}>
+        <OutlinedCard 
+        name={"American Express Platinum"} 
+        image={"/amex_platinum.png"}
+        current={150000}
+        standard={80000}
+        />
+        </Grid>
       </Grid>
     </Box>
   )

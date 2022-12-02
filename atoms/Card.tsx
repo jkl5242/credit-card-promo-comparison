@@ -34,7 +34,7 @@ const OutlinedCard = ({name, image, current, standard}) => {
               Current Promotion:
               {
                 Number(current) > Number(standard) ? 
-                <Typography color="green">{current}</Typography> : 
+                <Typography color="green"><strong>{current}</strong></Typography> : 
                 <Typography>{current}</Typography>
               }
             </Typography>
