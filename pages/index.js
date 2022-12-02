@@ -1,65 +1,56 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
+import Grid from '@mui/material/Grid';
+import OutlinedCard from '../atoms/Card.tsx'
 
-export default function Home() {
+export async function getServerSideProps() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  const data = await res.text()
+  return {
+    props : { 
+      data
+    }
+  }
+}
+
+export default function Home({data}) {
+  console.log(data)
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Credit Card Promo Compare
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Grid container spacing={3}>
+  <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
+  item xs={4}>
+  <OutlinedCard></OutlinedCard>
+  </Grid>
+  <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
+  item xs={4}>
+  <OutlinedCard></OutlinedCard>
+  </Grid>
+  <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
+  item xs={4}>
+  <OutlinedCard></OutlinedCard>
+  </Grid>
+  
+</Grid>
+    </Box>
   )
 }
