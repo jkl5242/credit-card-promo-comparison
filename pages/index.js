@@ -3,22 +3,18 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
+import React, {useState} from 'react';
 import Grid from '@mui/material/Grid';
 import OutlinedCard from '../atoms/Card.tsx'
+import ButtonGroup from '../atoms/ButtonGroup.tsx'
+import Slide from '@mui/material/Slide';
+import CreditCardTable from '../atoms/CreditCardTable.tsx'
 
-export async function getServerSideProps() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-  const data = await res.text()
-  return {
-    props : { 
-      data
-    }
-  }
-}
 
-export default function Home({data}) {
+export default function Home() {
   const creditCards = ["chase_reserve", "citi_premier"]
+  const [view, setView] = useState("gridView")
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -34,8 +30,11 @@ export default function Home({data}) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Credit Card Promo Compare
           </Typography>
+          <ButtonGroup stateChanger={setView} />
         </Toolbar>
       </AppBar>
+      {view == "gridView" &&
+      <Slide direction="up" in={true} mountOnEnter unmountOnExit>
       <Grid container spacing={3}>
         <Grid style={{marginTop: '10px', marginLeft: '10px'}} 
         item xs={4}>
@@ -65,6 +64,11 @@ export default function Home({data}) {
         />
         </Grid>
       </Grid>
+      </Slide>}
+      {view == "tableView" &&
+      <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+      <div>Table</div>
+      </Slide>}
     </Box>
   )
 }
